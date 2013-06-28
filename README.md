@@ -67,6 +67,14 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>2.489 ms</td>
       </tr>
       <tr>
+        <td>Thin</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
+        <td>2.926 secs</td>
+        <td><strong style="color: magenta;">341.81</strong></td>
+        <td>2.926 ms</td>
+      </tr>      
+      <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MongoDB<sup>2</sup></td>
@@ -89,7 +97,15 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>3.488 secs</td>
         <td><strong style="color: magenta;">286.69</strong></td>
         <td>3.488 ms</td>
-      </tr>      
+      </tr>
+      <tr>
+        <td>Unicorn-Rails</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
+        <td>3.506 secs</td>
+        <td><strong style="color: magenta;">285.21</strong></td>
+        <td>3.506 ms</td>
+      </tr>               
       <tr>
         <td>Passenger 4.0.5 Standalone</td>
         <td>Rails 4.0.0</td>
