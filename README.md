@@ -63,7 +63,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>Rails 4.0.0<sup>1</sup></td>
         <td>MongoDB</td>
         <td>2.489 secs</td>
-        <td>__401.71__</td>
+        <td><strong style="color: magenta;">401.71</strong></td>
         <td>2.489 ms</td>
       </tr>
       <tr>
@@ -71,7 +71,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>Goliath 1.0.2</td>
         <td>MongoDB<sup>2</sup></td>
         <td>3.217 secs</td>
-        <td>__310.83__</td>
+        <td><strong style="color: magenta;">310.83</strong></td>
         <td>3.217 ms</td>
       </tr>      
       <tr>
@@ -79,7 +79,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
         <td>3.270 secs</td>
-        <td>__305.82__</td>
+        <td><strong style="color: magenta;">305.82</strong></td>
         <td>3.270 ms</td>
       </tr>     
       <tr>
@@ -87,7 +87,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>Goliath 1.0.2</td>
         <td>MySQL</td>
         <td>3.488 secs</td>
-        <td>__286.69__</td>
+        <td><strong style="color: magenta;">286.69</strong></td>
         <td>3.488 ms</td>
       </tr>      
       <tr>
@@ -95,7 +95,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
         <td>3.687 secs</td>
-        <td>__271.20__</td>
+        <td><strong style="color: magenta;">271.20</strong></td>
         <td>3.687 ms</td>
       </tr>         
   </tbody>
