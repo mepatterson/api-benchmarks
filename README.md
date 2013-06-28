@@ -2,7 +2,7 @@
 4 API Benchmarks
 ================
 
-Four different app architectures for benchmarking concurrent API designs:
+Four different app architectures for benchmarking concurrent API designs where the general goal is to randomly select a single record (per HTTP request) from a large data set:
 
 * Rails 4 + MySQL 
 * Rails 4 + MongoDB 
@@ -113,7 +113,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
 
 I initially wrote two `Item.random()` methods, one for MySQL/ActiveRecord and one for MongoDB/Mongoid. After realizing some issues with the Mongoid ODM and concurrency via EventMachine, I had to write a third method for testing against MongoDB using the Moped lower-level wire protocol interface, since Mongoid wasn't going to cut it in that setup. 
 
-In the case of the MongoDB `random()`, I added a `randomizer` field to every document. This field contains an integer, evenly distributed across the documents and indexed, as a way of segmenting the 1,000,000 doc collection so picking a random one actually involves first picking a random segment and then randomly choosing one record in that segment. Even with two Mongo queries, this is much, much faster than trying to use `skip()` across all one million records. This is very close to what the 10gen guys actually recommend you do for random MongoDB record selection.
+In the case of the MongoDB `random()`, I added a `randomizer` field to every document. This field contains an integer from a defined range, evenly distributed across the documents and indexed, as a way of segmenting the 1,000,000 doc collection so picking a random one actually involves first picking a random segment and then randomly choosing one record in that segment. Even with two Mongo queries, this is much, much faster than trying to use `skip()` across all one million records. This is very close to what the 10gen guys actually recommend you do for random MongoDB record selection.
 
 In the case of the MySQL/ActiveRecord queries, I had a similar problem: it's inadvisable to randomly sort a MySQL query on a large table. So, again, I used a trick of randomly picking a row id from within the known min..max range of all ids in the table.
 
