@@ -60,8 +60,8 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
   <tbody>
       <tr>
         <td>Puma</td>
-        <td>Rails 4.0.0<sup>1</sup></td>
-        <td>MongoDB</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
         <td>2.489 secs</td>
         <td><strong style="color: magenta;">401.71</strong></td>
         <td>2.489 ms</td>
@@ -105,7 +105,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
   <sup>1</sup> This is using Mongoid ODM fully for the queries. Apparently Mongoid 4.0 (for Rails 4) properly handles Rails multithreading, because in this setup it was clear that my requests were being handled concurrently.
 </p>
 <p>
-  <sup>2</sup> The Mongoid ODM does not (yet) work with EM-Synchrony in a non-blocking manner. So, to make this work with Goliath's concurrency, I had to drop down to the Moped driver level and manually code the `Item.random()` query instead of using the Mongoid methods.
+  <sup>2</sup> The Mongoid ODM does not (yet) work with EM-Synchrony in a non-blocking manner. So, to make this work with Goliath's concurrency, I had to drop down to the Moped driver level and manually code the <code>Item.random()</code> query instead of using the Mongoid methods.
 </p>
 
 
