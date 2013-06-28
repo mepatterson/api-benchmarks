@@ -121,18 +121,18 @@ So here they are, for your amusement:
 
 __Rails4/MongoDB/Mongoid__
 ```ruby
-def random      
-  # in the off case where a segment doesn't have a full set and we pick an offset 
-  # that results in a nil response, we just run another query. This is slower than
-  # my previous method, in theory, but faster if we assume our db has contiguous sets
-  # more often than it does not.
-  result = nil
-  while result.nil?
-    r, i = rand(RANDOM_SEGMENT_SIZE), rand(RANDOM_SEGMENT_SIZE)
-    result = where(randomizer: r).skip(i).first
+  def random      
+    # in the off case where a segment doesn't have a full set and we pick an offset 
+    # that results in a nil response, we just run another query. This is slower than
+    # my previous method, in theory, but faster if we assume our db has contiguous sets
+    # more often than it does not.
+    result = nil
+    while result.nil?
+      r, i = rand(RANDOM_SEGMENT_SIZE), rand(RANDOM_SEGMENT_SIZE)
+      result = where(randomizer: r).skip(i).first
+    end
+    result
   end
-  result
-end
 ```
 __Goliath/MongoDB/Moped__
 ```ruby
@@ -152,15 +152,15 @@ __Goliath/MongoDB/Moped__
 
 __MySQL/ActiveRecord__
 ```ruby
-    # attempt at a reasonably-performant way to randomly pick a single record
-    # without resorting to a nasty full table scan using ORDER RANDOM
-    # CAVEAT EMPTOR: 
-    #   with a lot of gaps in the ID sequence, this becomes less uniformly random
-    def random
-      if minimum = self.minimum(:id)
-        where("id >= ?", ::Random.new.rand(minimum..self.maximum(:id))).first
-      else
-        nil
-      end
+  # attempt at a reasonably-performant way to randomly pick a single record
+  # without resorting to a nasty full table scan using ORDER RANDOM
+  # CAVEAT EMPTOR: 
+  #   with a lot of gaps in the ID sequence, this becomes less uniformly random
+  def random
+    if minimum = self.minimum(:id)
+      where("id >= ?", ::Random.new.rand(minimum..self.maximum(:id))).first
+    else
+      nil
     end
+  end
 ```
