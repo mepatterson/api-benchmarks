@@ -1,0 +1,27 @@
+#!/usr/bin/env rake
+require "rspec/core/rake_task"
+RSpec::Core::RakeTask.new
+task :default => :spec
+task :test => :spec
+
+# require 'standalone_migrations'
+# StandaloneMigrations::Tasks.load_tasks
+
+
+require 'mongoid'
+# require 'globalize3'
+Dir["./app/models/*.rb"].each { |f| require f }
+
+
+namespace :db do
+  task :create_indexes, :environment do |t, args|
+    unless args[:environment]
+      puts "Must provide an environment (e.g. rake db:create_indexes[development]"
+      exit
+    end
+
+    Mongoid.load!("db/mongoid.yml", args[:environment])
+
+    Item.create_indexes
+  end
+end

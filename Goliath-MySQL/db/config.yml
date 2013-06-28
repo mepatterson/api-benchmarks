@@ -1,0 +1,25 @@
+development:
+  host: localhost
+  adapter: em_mysql2
+  database: bench-goliath-mysql-dev
+  pool: 5
+  timeout: 5000
+  username: root
+  password:
+
+production:
+  host: localhost
+  adapter: em_mysql2
+  encoding: utf8
+  reconnect: false
+  database: bench-goliath-mysql-dev
+  pool: 10
+  username: root
+  password:
+
+test:
+  host: localhost
+  adapter: mysql2
+  database: bench-goliath-mysql-test
+  pool: 5
+  timeout: 5000
