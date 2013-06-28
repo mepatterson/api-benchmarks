@@ -40,8 +40,11 @@ First, my specs:
 * Benchmarking using ApacheBench v2.3
 * Rails is on 4.0.0 and is set to run in multithreaded mode by default now, so no changes needed from stock Rails 4 configuration.
 
-Benchmark request: `http://lvh.me:9000/v1/items/random`
+Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
 (with the appropriate port and without the `v1` in the case of the Rails apps)
+
+* Concurrency Level: __20__
+* Number of Requests: __1000__
 
 <table>
   <thead>
@@ -49,8 +52,6 @@ Benchmark request: `http://lvh.me:9000/v1/items/random`
       <th>Webserver</th>
       <th>Framework</th>
       <th>Database</th>
-      <th>Concurrency Level</th>
-      <td># of Requests</th>
       <th>Elapsed Time</th>
       <th>Requests per Second (mean)</th>
       <th>Time per Request (mean across all conc reqs)</th>
@@ -61,50 +62,40 @@ Benchmark request: `http://lvh.me:9000/v1/items/random`
         <td>Puma</td>
         <td>Rails 4.0.0<sup>1</sup></td>
         <td>MongoDB</td>
-        <td>20</td>
-        <td>1000</td>
         <td>2.489 secs</td>
-        <td>401.71</td>
+        <td>__401.71__</td>
         <td>2.489 ms</td>
       </tr>
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MongoDB<sup>2</sup></td>
-        <td>20</td>
-        <td>1000</td>
         <td>3.217 secs</td>
-        <td>310.83</td>
+        <td>__310.83__</td>
         <td>3.217 ms</td>
       </tr>      
       <tr>
         <td>Puma</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>20</td>
-        <td>1000</td>
         <td>3.270 secs</td>
-        <td>305.82</td>
+        <td>__305.82__</td>
         <td>3.270 ms</td>
       </tr>     
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MySQL</td>
-        <td>20</td>
-        <td>1000</td>
         <td>3.488 secs</td>
-        <td>286.69</td>
+        <td>__286.69__</td>
         <td>3.488 ms</td>
       </tr>      
       <tr>
         <td>Passenger 4.0.5 Standalone</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>20</td>
-        <td>1000</td>
         <td>3.687 secs</td>
-        <td>271.20</td>
+        <td>__271.20__</td>
         <td>3.687 ms</td>
       </tr>         
   </tbody>
