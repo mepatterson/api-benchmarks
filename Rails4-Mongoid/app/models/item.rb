@@ -43,8 +43,7 @@ class Item
 
   class << self
     # this generates 1 million records for benchmarking
-    def generate_million
-      count = 1_000_000
+    def generate_tons(count = 1_000_000)
       puts "Generating #{count} items..."
       count.times do |n|
         name = Faker::Company.bs.titleize

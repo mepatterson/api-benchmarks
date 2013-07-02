@@ -41,6 +41,8 @@ gem 'pry'
 
 # puma to get concurrency
 gem 'puma'
+gem 'thin'
+gem 'unicorn'
 
 gem 'faker'
 

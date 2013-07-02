@@ -21,7 +21,7 @@ You will likely need to run `rake db:migrate` for setting up your first MySQL da
 Setting up the Test Corpus
 --------------------------
 
-You want 1,000,000 rows to benchmark against. Easiest way: use console and manually run the `Item.generate_million` command.
+You want lots of rows to benchmark against. Easiest way: use console and manually run the `Item.generate_tons` command. It defaults to 1 million, but you can pass a different value.
 
 NOTE: you only have to do this once for each of the two database types (mysql vs mongo) if you are sharing them the way I did.
 
@@ -47,6 +47,7 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
 * Number of Requests: __1000__
 
 <table>
+  <caption>1 Million Records</caption>
   <thead>
     <tr>
       <th>Webserver</th>
@@ -113,6 +114,78 @@ Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
         <td>3.687 secs</td>
         <td><strong style="color: magenta;">271.20</strong></td>
         <td>3.687 ms</td>
+      </tr>         
+  </tbody>
+</table>
+
+<table>
+  <caption>10 Million Records</caption>
+  <thead>
+    <tr>
+      <th>Webserver</th>
+      <th>Framework</th>
+      <th>Database</th>
+      <th>Elapsed Time</th>
+      <th>Requests per Second (mean)</th>
+      <th>Time per Request (mean across all conc reqs)</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>Puma</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
+        <td>2.668 secs</td>
+        <td><strong style="color: magenta;">374.82</strong></td>
+        <td>2.668 ms</td>
+      </tr>
+      <tr>
+        <td>Thin</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
+        <td>3.294 secs</td>
+        <td><strong style="color: magenta;">303.60</strong></td>
+        <td>3.294 ms</td>
+      </tr>      
+      <tr>
+        <td>Unicorn-Rails</td>
+        <td>Rails 4.0.0</td>
+        <td>MongoDB<sup>1</sup></td>
+        <td>3.692 secs</td>
+        <td><strong style="color: magenta;">270.85</strong></td>
+        <td>3.692 ms</td>
+      </tr>  
+      <tr>
+        <td>Goliath internal</td>
+        <td>Goliath 1.0.2</td>
+        <td>MongoDB<sup>2</sup></td>
+        <td>3.806 secs</td>
+        <td><strong style="color: magenta;">262.72</strong></td>
+        <td>3.806 ms</td>
+      </tr>     
+      <tr>
+        <td>Goliath internal</td>
+        <td>Goliath 1.0.2</td>
+        <td>MySQL</td>
+        <td>24.520 secs</td>
+        <td><strong style="color: magenta;">40.78</strong></td>
+        <td>24.520 ms</td>
+      </tr>  
+      <tr>
+        <td>Puma</td>
+        <td>Rails 4.0.0</td>
+        <td>MySQL</td>
+        <td>30.18 secs</td>
+        <td><strong style="color: magenta;">37.82</strong></td>
+        <td>30.18 ms</td>
+      </tr>                
+      <tr>
+        <td>Passenger 4.0.5 Standalone</td>
+        <td>Rails 4.0.0</td>
+        <td>MySQL</td>
+        <td>36.670 secs</td>
+        <td><strong style="color: magenta;">27.27</strong></td>
+        <td>36.670 ms</td>
       </tr>         
   </tbody>
 </table>

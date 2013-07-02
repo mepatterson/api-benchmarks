@@ -26,11 +26,13 @@ class Item < ActiveRecord::Base
 
 
   class << self
-    # this generates 1 million records for benchmarking
-    def generate_million
-      puts "Generating 1,000,000 items..."
-      1_000_000.times do |n|
+    def generate_tons(count = 1_000_000)
+      puts "Generating #{count} items..."
+      count.times do |n|
         name = Faker::Company.bs.titleize
+        # this will create a randomized segment space of 10,000 integers (0..9999)
+        # when indexed, this ensures that we are randomly selecting inside a sub-set of
+        #   only 100 records whenever we do a .random(), instead of scanning 1mil records
         puts "#{n} / #{name}"
         i = Item.create({
           name: name,

@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20130624172432) do
     t.string   "uuid"
     t.string   "hash_code"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "items", ["uuid"], name: "index_items_on_uuid", using: :btree
