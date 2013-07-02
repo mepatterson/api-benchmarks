@@ -47,6 +47,10 @@ Benchmark request: `ab -n 1000 -c 20 http://lvh.me:9000/v1/items/random`
 
 ![](results/graph-1mil-vs-10mil.png)
 
+Discussion of MySQL Performance at 10mil Records
+-------
+
+So, when we bump up our table/collection to 10 million records, things start to get hairy. MySQL appears to fall on its face. After some investigation, though, I figured out what was going on here. It's really more of a result of the random() method I wrote for ActiveRecord. Even with an index on `id`, doing a `WHERE id >= 123456` is quite a bit slower in SQL than doing `WHERE id=123456`. The former is to protect us from holes in our id sequence (usually when something has been deleted). If we're assuming a canned set and we know there will never be holes, the latter query is far better and puts Rails4/MySQL right back up there with Rails4/Mongo... almost exactly the same requests/sec. If we assume a canned set with _some_ holes (but not too many), throwing that query inside a `while result.nil?` actually outperforms the `>=` query. Of course, this performance will degrade as more holes in the id sequence pollute our table, but if we're assuming that won't happen, this method protects us from the occasional mistake so we don't accidentally return a nil result. If you're building a more traditional app where this table is constantly changing, then you'll have to look at other approaches, or just deal with the fact that it's not going to be super-fast on every query...
 
 <table>
   <caption>1 Million Records</caption>
