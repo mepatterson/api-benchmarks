@@ -1,4 +1,3 @@
-
 4 API Benchmarks
 ================
 
@@ -40,7 +39,7 @@ First, my specs:
 * Benchmarking using ApacheBench v2.3
 * Rails is on 4.0.0 and is set to run in multithreaded mode by default now, so no changes needed from stock Rails 4 configuration.
 
-Benchmark request: `ab -n 1000 -c 10 http://lvh.me:9000/v1/items/random`
+Benchmark request: `ab -n 1000 -c 20 http://lvh.me:9000/v1/items/random`
 (with the appropriate port and without the `v1` in the case of the Rails apps)
 
 * Concurrency Level: __20__
