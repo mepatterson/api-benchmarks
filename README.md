@@ -24,6 +24,12 @@ You want lots of rows to benchmark against. Easiest way: use console and manuall
 
 NOTE: you only have to do this once for each of the two database types (mysql vs mongo) if you are sharing them the way I did.
 
+Caveat (IMPORTANT)
+------
+
+This is NOT a "boil the ocean" benchmark. I have a specific purpose here, with a specific app architecture: I'm benchmarking an app where we have a *LARGE* dataset and we want to have an API where we can request *1* record *AT RANDOM* per HTTP request. The big assumption is that we pre-create this dataset and it's largely canned. That is, we have a contiguous sequence of IDs (in the MySQL case) or a relatively uniform segmenting method (in the Mongo case).
+
+_If you want to just know, generally, if Rails4 is better than Goliath, or MySQL is better than MongoDB, then you're asking a question I'm not intending to answer here. I'd argue that you need to consider your use-cases and app architecture before that question is even relevant._
 
 My Results
 ----------
