@@ -24,6 +24,12 @@ You want lots of rows to benchmark against. Easiest way: use console and manuall
 
 NOTE: you only have to do this once for each of the two database types (mysql vs mongo) if you are sharing them the way I did.
 
+Caveat (IMPORTANT)
+------
+
+This is NOT a "boil the ocean" benchmark. I have a specific purpose here, with a specific app architecture: I'm benchmarking an app where we have a *LARGE* dataset and we want to have an API where we can request *1* record *AT RANDOM* per HTTP request. The big assumption is that we pre-create this dataset and it's largely canned. That is, we have a contiguous sequence of IDs (in the MySQL case) or a relatively uniform segmenting method (in the Mongo case).
+
+_If you want to just know, generally, if Rails4 is better than Goliath, or MySQL is better than MongoDB, then you're asking a question I'm not intending to answer here. I'd argue that you need to consider your use-cases and app architecture before that question is even relevant._
 
 My Results
 ----------
@@ -45,6 +51,13 @@ Benchmark request: `ab -n 1000 -c 20 http://lvh.me:9000/v1/items/random`
 * Concurrency Level: __20__
 * Number of Requests: __1000__
 
+![](results/graph-1mil-vs-10mil.png)
+
+### Discussion of MySQL Performance at 10mil Records
+
+So, when we bump up our table/collection to 10 million records, things start to get hairy. MySQL appears to fall on its face. After some investigation, though, I figured out what was going on here. It's really more of a result of the random() method I wrote for ActiveRecord. Even with an index on `id`, doing a `WHERE id >= 123456` is quite a bit slower in SQL than doing `WHERE id=123456`. The former is to protect us from holes in our id sequence (usually when something has been deleted). If we're assuming a canned set and we know there will never be holes, the latter query is far better and puts Rails4/MySQL right back up there with Rails4/Mongo... almost exactly the same requests/sec. If we assume a canned set with _some_ holes (but not too many), throwing that query inside a `while result.nil?` actually outperforms the `>=` query. Of course, this performance will degrade as more holes in the id sequence pollute our table, but if we're assuming that won't happen, this method protects us from the occasional mistake so we don't accidentally return a nil result. If you're building a more traditional app where this table is constantly changing, then you'll have to look at other approaches, or just deal with the fact that it's not going to be super-fast on every query...
+
+### Raw Data
 <table>
   <caption>1 Million Records</caption>
   <thead>
