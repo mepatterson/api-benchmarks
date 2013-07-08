@@ -1,4 +1,4 @@
-4 API Benchmarks
+4+ API Benchmarks
 ================
 
 Four different app architectures for benchmarking concurrent API designs where the general goal is to randomly select a single record (per HTTP request) from a large data set:
@@ -7,6 +7,7 @@ Four different app architectures for benchmarking concurrent API designs where t
 * Rails 4 + MongoDB 
 * Goliath + MySQL
 * Goliath + MongoDB
+* Rails 3 + MySQL (for reference)
 
 Usage
 -----
@@ -44,6 +45,7 @@ First, my specs:
 * Ruby 2.0.0-p0
 * Benchmarking using ApacheBench v2.3
 * Rails is on 4.0.0 and is set to run in multithreaded mode by default now, so no changes needed from stock Rails 4 configuration.
+(I added a Rails 3.2.13 benchmark also, just as a reference to see how much Rails 4 performance has improved in cases like this one)
 
 Benchmark request: `ab -n 1000 -c 20 http://lvh.me:9000/v1/items/random`
 (with the appropriate port and without the `v1` in the case of the Rails apps)
