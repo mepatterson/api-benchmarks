@@ -65,9 +65,7 @@ So, when we bump up our table/collection to 10 million records, things start to 
       <th>Webserver</th>
       <th>Framework</th>
       <th>Database</th>
-      <th>Elapsed Time</th>
       <th>Requests per Second (mean)</th>
-      <th>Time per Request (mean across all conc reqs)</th>
     </tr>
   </thead>
   <tbody>
@@ -75,58 +73,62 @@ So, when we bump up our table/collection to 10 million records, things start to 
         <td>Puma</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>2.489 secs</td>
         <td><strong style="color: magenta;">401.71</strong></td>
-        <td>2.489 ms</td>
       </tr>
       <tr>
         <td>Thin</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>2.926 secs</td>
         <td><strong style="color: magenta;">341.81</strong></td>
-        <td>2.926 ms</td>
       </tr>      
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MongoDB<sup>2</sup></td>
-        <td>3.217 secs</td>
         <td><strong style="color: magenta;">310.83</strong></td>
-        <td>3.217 ms</td>
       </tr>      
       <tr>
         <td>Puma</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>3.270 secs</td>
         <td><strong style="color: magenta;">305.82</strong></td>
-        <td>3.270 ms</td>
       </tr>     
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MySQL</td>
-        <td>3.488 secs</td>
         <td><strong style="color: magenta;">286.69</strong></td>
-        <td>3.488 ms</td>
       </tr>
       <tr>
         <td>Unicorn-Rails</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>3.506 secs</td>
         <td><strong style="color: magenta;">285.21</strong></td>
-        <td>3.506 ms</td>
       </tr>               
       <tr>
         <td>Passenger 4.0.5 Standalone</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>3.687 secs</td>
         <td><strong style="color: magenta;">271.20</strong></td>
-        <td>3.687 ms</td>
+      </tr>            
+      <tr>
+        <td>Passenger 4.0.5 Standalone</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">162.34</strong></td>
       </tr>         
+      <tr>
+        <td>Puma</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">149.28</strong></td>
+      </tr>         
+      <tr>
+        <td>Webrick</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">101.84</strong></td>
+      </tr>
   </tbody>
 </table>
 
@@ -137,9 +139,7 @@ So, when we bump up our table/collection to 10 million records, things start to 
       <th>Webserver</th>
       <th>Framework</th>
       <th>Database</th>
-      <th>Elapsed Time</th>
       <th>Requests per Second (mean)</th>
-      <th>Time per Request (mean across all conc reqs)</th>
     </tr>
   </thead>
   <tbody>
@@ -147,58 +147,63 @@ So, when we bump up our table/collection to 10 million records, things start to 
         <td>Puma</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>2.668 secs</td>
         <td><strong style="color: magenta;">374.82</strong></td>
-        <td>2.668 ms</td>
       </tr>
       <tr>
         <td>Thin</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>3.294 secs</td>
         <td><strong style="color: magenta;">303.60</strong></td>
-        <td>3.294 ms</td>
       </tr>      
       <tr>
         <td>Unicorn-Rails</td>
         <td>Rails 4.0.0</td>
         <td>MongoDB<sup>1</sup></td>
-        <td>3.692 secs</td>
         <td><strong style="color: magenta;">270.85</strong></td>
-        <td>3.692 ms</td>
       </tr>  
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MongoDB<sup>2</sup></td>
-        <td>3.806 secs</td>
         <td><strong style="color: magenta;">262.72</strong></td>
-        <td>3.806 ms</td>
       </tr>     
       <tr>
         <td>Goliath internal</td>
         <td>Goliath 1.0.2</td>
         <td>MySQL</td>
-        <td>24.520 secs</td>
         <td><strong style="color: magenta;">40.78</strong></td>
-        <td>24.520 ms</td>
       </tr>  
       <tr>
         <td>Puma</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>30.18 secs</td>
         <td><strong style="color: magenta;">37.82</strong></td>
-        <td>30.18 ms</td>
       </tr>                
       <tr>
         <td>Passenger 4.0.5 Standalone</td>
         <td>Rails 4.0.0</td>
         <td>MySQL</td>
-        <td>36.670 secs</td>
-        <td><strong style="color: magenta;">27.27</strong></td>
-        <td>36.670 ms</td>
+        <td><strong style="color: magenta;">36.78</strong></td>
+      </tr>
+      <tr>
+        <td>Passenger 4.0.5 Standalone</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">38.83</strong></td>
       </tr>         
+      <tr>
+        <td>Puma</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">52.62</strong></td>
+      </tr>         
+      <tr>
+        <td>Webrick</td>
+        <td>Rails 3.2.13</td>
+        <td>MySQL</td>
+        <td><strong style="color: magenta;">36.47</strong></td>
+      </tr>
+
   </tbody>
 </table>
 
