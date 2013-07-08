@@ -51,7 +51,7 @@ Benchmark request: `ab -n 1000 -c 20 http://lvh.me:9000/v1/items/random`
 * Concurrency Level: __20__
 * Number of Requests: __1000__
 
-![](results/graph-1mil-vs-10mil.png)
+![](results/graphs-1mil-vs-10mil.png)
 
 ### Discussion of MySQL Performance at 10mil Records
 
