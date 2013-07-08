@@ -9,6 +9,8 @@ class Item < ActiveRecord::Base
   validates :hash_code, presence: true
   validates :description, presence: true
 
+  attr_accessible :name, :description
+
   # translates :name, :description
 
   before_validation(:on => :create) do
@@ -26,6 +28,7 @@ class Item < ActiveRecord::Base
 
 
   class << self
+
     def generate_tons(count = 1_000_000)
       puts "Generating #{count} items..."
       count.times do |n|
@@ -47,18 +50,6 @@ class Item < ActiveRecord::Base
     # without resorting to a nasty full table scan using ORDER RANDOM
     # CAVEAT EMPTOR: 
     #   with a lot of gaps in the ID sequence, this becomes less uniformly random
-    def alt_random
-      sql = <<-SQL
-        SELECT *
-        FROM items AS r1 JOIN
-          (SELECT (RAND() * (SELECT MAX(id) FROM items)) AS id) AS r2
-        WHERE r1.id >= r2.id
-        ORDER BY r1.id ASC
-        LIMIT 1;
-      SQL
-      Item.find_by_sql(sql).first
-    end
-
     def random
       if minimum = self.minimum(:id)
         where("id >= ?", ::Random.new.rand(minimum..self.maximum(:id))).first

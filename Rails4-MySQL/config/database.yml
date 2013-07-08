@@ -54,7 +54,8 @@ production:
   encoding: utf8
   reconnect: false
   # database: bench-goliath-mysql-prod
-  database: bench-goliath-mysql-dev
+  database: bench-1mil-dev
+  # database: bench-goliath-mysql-dev
   pool: 5
   username: root
   password:
